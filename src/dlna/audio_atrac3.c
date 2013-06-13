@@ -27,9 +27,9 @@
 
 /* Profile for audio media class content */
 static dlna_profile_t atrac3 = {
-  .id = "ATRAC3plus",
-  .mime = MIME_AUDIO_ATRAC,
-  .label = LABEL_AUDIO_2CH_MULTI
+DOT_ID "ATRAC3plus",
+DOT_MIME MIME_AUDIO_ATRAC,
+DOT_LABEL LABEL_AUDIO_2CH_MULTI
 };
 
 audio_profile_t
@@ -61,9 +61,9 @@ probe_atrac3 (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_audio_atrac3 = {
-  .id = DLNA_PROFILE_AUDIO_ATRAC3,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "at3p,acm,wav",
-  .probe = probe_atrac3,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_ATRAC3,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "at3p,acm,wav",
+DOT_PROBE probe_atrac3,
+DOT_NEXT NULL
 };

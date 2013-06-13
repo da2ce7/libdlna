@@ -27,9 +27,9 @@
 
 /* Profile for audio media class content */
 static dlna_profile_t ac3 = {
-  .id = "AC3",
-  .mime = MIME_AUDIO_DOLBY_DIGITAL,
-  .label = LABEL_AUDIO_2CH_MULTI
+DOT_ID "AC3",
+DOT_MIME MIME_AUDIO_DOLBY_DIGITAL,
+DOT_LABEL LABEL_AUDIO_2CH_MULTI
 };
 
 audio_profile_t
@@ -90,9 +90,9 @@ probe_ac3 (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_audio_ac3 = {
-  .id = DLNA_PROFILE_AUDIO_AC3,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "ac3",
-  .probe = probe_ac3,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_AC3,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "ac3",
+DOT_PROBE probe_ac3,
+DOT_NEXT NULL
 };

@@ -27,17 +27,17 @@
 
 /* Profile for audio media class content */
 static dlna_profile_t mp3 = {
-  .id = "MP3",
-  .mime = MIME_AUDIO_MPEG,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "MP3",
+DOT_MIME MIME_AUDIO_MPEG,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content with extensions
    for lower sampling rates and bitrates */
 static dlna_profile_t mp3x = {
-  .id = "MP3X",
-  .mime = MIME_AUDIO_MPEG,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "MP3X",
+DOT_MIME MIME_AUDIO_MPEG,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static int
@@ -180,9 +180,9 @@ probe_mp3 (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_audio_mp3 = {
-  .id = DLNA_PROFILE_AUDIO_MP3,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "mp3",
-  .probe = probe_mp3,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_MP3,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "mp3",
+DOT_PROBE probe_mp3,
+DOT_NEXT NULL
 };

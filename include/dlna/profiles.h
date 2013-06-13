@@ -22,6 +22,12 @@
 #ifndef _PROFILES_H_
 #define _PROFILES_H_
 
+#ifdef _MSC_VER
+#ifndef inline
+#define inline _inline
+#endif
+#endif
+
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
 

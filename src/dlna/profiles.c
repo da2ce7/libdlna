@@ -56,7 +56,7 @@ dlna_register_profile (dlna_t *dlna, dlna_registered_profile_t *profile)
   while (*p != NULL)
   {
     if (((dlna_registered_profile_t *) *p)->id == profile->id)
-      return; /* already registered */
+      return; /* al _ready registered */
     p = (void *) &((dlna_registered_profile_t *) *p)->next;
   }
   *p = profile;
@@ -283,7 +283,7 @@ dlna_guess_media_profile (dlna_t *dlna, const char *filename)
   if (avformat_open_input (&ctx, filename, NULL, NULL) != 0)
   {
     if (dlna->verbosity)
-      fprintf (stderr, "can't open file: %s\n", filename);
+      fprintf (stderr, "can't_open file: %s\n", filename);
     return NULL;
   }
 
@@ -441,7 +441,7 @@ dlna_write_protocol_info (dlna_protocol_info_type_t type,
            "DLNA.ORG_FLAGS", flags, 0);
   strcat (protocol, dlna_info);
 
-  return strdup (protocol);
+  return _strdup (protocol);
 }
 
 audio_profile_t

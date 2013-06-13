@@ -1,8 +1,18 @@
 #include <string.h>
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+
+#ifdef _MSC_VER
+#ifndef inline
+#define inline _inline
+#endif
+#endif
 
 #include <libavformat/avformat.h>
 
@@ -13,6 +23,8 @@
 #define MPEG_TS_SYNC_CODE 0x47
 #define MPEG_TS_PACKET_LENGTH 188
 #define MPEG_TS_PACKET_LENGTH_DLNA 192 /* prepends 4 bytes to TS packet */
+
+typedef signed long ssize_t;
 
 static const struct {
   const char *name;
@@ -38,10 +50,10 @@ mpeg_find_container_type (const char *filename)
   int fd, i;
   ssize_t count;
 
-  /* read file header */
-  fd = open (filename, O_RDONLY);
-  count = read (fd, buffer, 2 * MPEG_TS_PACKET_LENGTH_DLNA); // Ignoring count
-  close (fd);
+  /*  _read file header */
+  fd =_open (filename, O_RDONLY);
+  count =  _read (fd, buffer, 2 * MPEG_TS_PACKET_LENGTH_DLNA); // Ignoring count
+  _close (fd);
 
   /* check for MPEG-TS container */
   for (i = 0; i < MPEG_TS_PACKET_LENGTH; i++)

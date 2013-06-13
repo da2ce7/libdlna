@@ -93,71 +93,71 @@ static wmv9_profile_t wmv9_profile_main_high[] = {
 /* Medium resolution video (Main profile at Medium Level)
    with baseline WMA audio */
 static dlna_profile_t wmvmed_base = {
-  .id = "WMVMED_BASE",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_SD
+DOT_ID "WMVMED_BASE",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Medium resolution video (Main profile at Medium Level)
    with full WMA audio */
 static dlna_profile_t wmvmed_full = {
-  .id = "WMVMED_FULL",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_SD
+DOT_ID "WMVMED_FULL",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Medium resolution video (Main profile at Medium Level)
    with WMA professional audio */
 static dlna_profile_t wmvmed_pro = {
-  .id = "WMVMED_PRO",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_HD
+DOT_ID "WMVMED_PRO",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* High resolution video (Main profile at High Level)
    with full WMA audio */
 static dlna_profile_t wmvhigh_full = {
-  .id = "WMVHIGH_FULL",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_HD
+DOT_ID "WMVHIGH_FULL",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* High resolution video (Main profile at High Level)
    with WMA professional audio */
 static dlna_profile_t wmvhigh_pro = {
-  .id = "WMVHIGH_PRO",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_HD
+DOT_ID "WMVHIGH_PRO",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* HighMAT profile */
 static dlna_profile_t wmvhm_base dlna_unused = {
-  .id = "WMVHM_BASE",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_SD
+DOT_ID "WMVHM_BASE",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Low resolution video (Simple Profile at Low Level)
    with baseline WMA audio */
 static dlna_profile_t wmvspll_base = {
-  .id = "WMVSPLL_BASE",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_QCIF15
+DOT_ID "WMVSPLL_BASE",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_QCIF15
 };
 
 /* Low resolution video (Simple Profile at Medium Level)
    with baseline WMA audio */
 static dlna_profile_t wmvspml_base = {
-  .id = "WMVSPML_BASE",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_CIF15
+DOT_ID "WMVSPML_BASE",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_CIF15
 };
 
 /* Low resolution video (Simple Profile at Medium Level) with MP3 audio */
 static dlna_profile_t wmvspml_mp3 = {
-  .id = "WMVSPML_MP3",
-  .mime = MIME_VIDEO_WMV,
-  .label = LABEL_VIDEO_CIF15
+DOT_ID "WMVSPML_MP3",
+DOT_MIME MIME_VIDEO_WMV,
+DOT_LABEL LABEL_VIDEO_CIF15
 };
 
 static const struct {
@@ -268,9 +268,9 @@ probe_wmv9 (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_av_wmv9 = {
-  .id = DLNA_PROFILE_AV_WMV9,
-  .class = DLNA_CLASS_AV,
-  .extensions = "asf,wmv",
-  .probe = probe_wmv9,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AV_WMV9,
+DOT_CLASS DLNA_CLASS_AV,
+DOT_EXTENSIONS "asf,wmv",
+DOT_PROBE probe_wmv9,
+DOT_NEXT NULL
 };

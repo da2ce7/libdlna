@@ -27,23 +27,23 @@
 
 /* WMA content (bit rate less than 193 kbps) */
 static dlna_profile_t wmabase = {
-  .id = "WMABASE",
-  .mime = MIME_AUDIO_WMA,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "WMABASE",
+DOT_MIME MIME_AUDIO_WMA,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* WMA content */
 static dlna_profile_t wmafull = {
-  .id = "WMAFULL",
-  .mime = MIME_AUDIO_WMA,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "WMAFULL",
+DOT_MIME MIME_AUDIO_WMA,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* WMA professional version */
 static dlna_profile_t wmapro = {
-  .id = "WMAPRO",
-  .mime = MIME_AUDIO_WMA,
-  .label = LABEL_AUDIO_2CH_MULTI
+DOT_ID "WMAPRO",
+DOT_MIME MIME_AUDIO_WMA,
+DOT_LABEL LABEL_AUDIO_2CH_MULTI
 };
 
 audio_profile_t
@@ -111,9 +111,9 @@ probe_wma (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_audio_wma = {
-  .id = DLNA_PROFILE_AUDIO_WMA,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "wma,asf",
-  .probe = probe_wma,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_WMA,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "wma,asf",
+DOT_PROBE probe_wma,
+DOT_NEXT NULL
 };

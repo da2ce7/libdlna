@@ -21,7 +21,11 @@
 
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -104,204 +108,204 @@ static mpeg_ts_stream_t mpeg_ts_valid_streams_na_hd[] = {
 
 /* Profile for NTSC-formatted AV class media */
 static dlna_profile_t mpeg_ps_ntsc = {
-  .id = "MPEG_PS_NTSC",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_PS_NTSC",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Profile for NTSC-formatted AV class media */
 static dlna_profile_t mpeg_ps_ntsc_xac3 = {
-  .id = "MPEG_PS_NTSC_XAC3",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_PS_NTSC_XAC3",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Profile for PAL-formatted AV class media */
 static dlna_profile_t mpeg_ps_pal = {
-  .id = "MPEG_PS_PAL",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_PS_PAL",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Profile for PAL-formatted AV class media */
 static dlna_profile_t mpeg_ps_pal_xac3 = {
-  .id = "MPEG_PS_PAL_XAC3",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_PS_PAL_XAC3",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* MPEG-2 Main Profile at Low Level AAC LC audio encapsulated in
    MPEG-2 transport stream with zero value timestamp */
 static dlna_profile_t mpeg_ts_mp_ll_aac = {
-  .id = "MPEG_TS_MP_LL_AAC",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_CIF30
+DOT_ID "MPEG_TS_MP_LL_AAC",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_CIF30
 };
 
 /* MPEG-2 Main Profile at Low Level AAC LC audio encapsulated in
    MPEG-2 transport stream with valid value timestamp */
 static dlna_profile_t mpeg_ts_mp_ll_aac_t = {
-  .id = "MPEG_TS_MP_LL_AAC_T",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_CIF30
+DOT_ID "MPEG_TS_MP_LL_AAC_T",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_CIF30
 };
 
 /* MPEG-2 Main Profile at Low Level AAC LC audio encapsulated in
    MPEG-2 transport stream without a Timestamp field */
 static dlna_profile_t mpeg_ts_mp_ll_aac_iso = {
-  .id = "MPEG_TS_MP_LL_AAC_ISO",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_CIF30
+DOT_ID "MPEG_TS_MP_LL_AAC_ISO",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_CIF30
 };
 
 /* European region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet with zero value timestamp */
 static dlna_profile_t mpeg_ts_sd_eu = {
-  .id = "MPEG_TS_SD_EU",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_EU",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* European region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet with a valid non-zero value timestamp */
 static dlna_profile_t mpeg_ts_sd_eu_t = {
-  .id = "MPEG_TS_SD_EU_T",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_EU_T",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* European region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet without a Timestamp field */
 static dlna_profile_t mpeg_ts_sd_eu_iso = {
-  .id = "MPEG_TS_SD_EU_ISO",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_EU_ISO",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet with zero value timestamp */
 static dlna_profile_t mpeg_ts_sd_na = {
-  .id = "MPEG_TS_SD_NA",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_NA",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet with a valid non-zero value timestamp */
 static dlna_profile_t mpeg_ts_sd_na_t = {
-  .id = "MPEG_TS_SD_NA_T",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_NA_T",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet without a Timestamp field */
 static dlna_profile_t mpeg_ts_sd_na_iso = {
-  .id = "MPEG_TS_SD_NA_ISO",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_NA_ISO",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet with zero value timestamp */
 static dlna_profile_t mpeg_ts_sd_na_xac3 = {
-  .id = "MPEG_TS_SD_NA_XAC3",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_NA_XAC3",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet with a valid non-zero value timestamp */
 static dlna_profile_t mpeg_ts_sd_na_xac3_t = {
-  .id = "MPEG_TS_SD_NA_XAC3_T",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_NA_XAC3_T",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for Standard Definition AV class utilizing
    a DLNA Transport Packet without a Timestamp field */
 static dlna_profile_t mpeg_ts_sd_na_xac3_iso = {
-  .id = "MPEG_TS_SD_NA_XAC3_ISO",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_TS_SD_NA_XAC3_ISO",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* North America region profile for High Definition AV class utilizing
    a DLNA Transport Packet with zero value timestamp */
 static dlna_profile_t mpeg_ts_hd_na = {
-  .id = "MPEG_TS_HD_NA",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_HD
+DOT_ID "MPEG_TS_HD_NA",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* North America region profile for High Definition AV class utilizing
    a DLNA Transport Packet with a valid non-zero value timestamp */
 static dlna_profile_t mpeg_ts_hd_na_t = {
-  .id = "MPEG_TS_HD_NA_T",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_HD
+DOT_ID "MPEG_TS_HD_NA_T",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* North America region profile for High Definition AV class utilizing
    a DLNA Transport Packet without a Timestamp field */
 static dlna_profile_t mpeg_ts_hd_na_iso = {
-  .id = "MPEG_TS_HD_NA_ISO",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_HD
+DOT_ID "MPEG_TS_HD_NA_ISO",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* North America region profile for transcoded High Definition AV class
    media with a zero value timestamp */
 static dlna_profile_t mpeg_ts_hd_na_xac3 = {
-  .id = "MPEG_TS_HD_NA_XAC3",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_HD
+DOT_ID "MPEG_TS_HD_NA_XAC3",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* North America region profile for transcoded High Definition AV class
    media with a valid non-zero value timestamp */
 static dlna_profile_t mpeg_ts_hd_na_xac3_t = {
-  .id = "MPEG_TS_HD_NA_XAC3_T",
-  .mime = MIME_VIDEO_MPEG_TS,
-  .label = LABEL_VIDEO_HD
+DOT_ID "MPEG_TS_HD_NA_XAC3_T",
+DOT_MIME MIME_VIDEO_MPEG_TS,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* North America region profile for transcoded High Definition AV class
    media without a Timestamp field */
 static dlna_profile_t mpeg_ts_hd_na_xac3_iso = {
-  .id = "MPEG_TS_HD_NA_XAC3_ISO",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_HD
+DOT_ID "MPEG_TS_HD_NA_XAC3_ISO",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_HD
 };
 
 /* Profile defining ES encapsulation for transport of MPEG_PS_PAL over RTP */
 static dlna_profile_t mpeg_es_pal = {
-  .id = "MPEG_ES_PAL",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_ES_PAL",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Profile defining ES encapsulation for transport of MPEG_PS_NTSC over RTP */
 static dlna_profile_t mpeg_es_ntsc = {
-  .id = "MPEG_ES_NTSC",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_ES_NTSC",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Profile defining ES encapsulation for transport of
    MPEG_PS_PAL_XAC3 over RTP */
 static dlna_profile_t mpeg_es_pal_xac3 = {
-  .id = "MPEG_ES_PAL_XAC3",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_ES_PAL_XAC3",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 /* Profile defining ES encapsulation for transport of
    MPEG_PS_NTSC_XAC3 over RTP */
 static dlna_profile_t mpeg_es_ntsc_xac3 = {
-  .id = "MPEG_ES_NTSC_XAC3",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_SD
+DOT_ID "MPEG_ES_NTSC_XAC3",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_SD
 };
 
 static int
@@ -636,9 +640,9 @@ probe_mpeg2 (AVFormatContext *ctx,
 }
 
 dlna_registered_profile_t dlna_profile_av_mpeg2 = {
-  .id = DLNA_PROFILE_AV_MPEG2,
-  .class = DLNA_CLASS_AV,
-  .extensions = "mpg,mpeg,mpe,m2v,mp2p,mp2t,ts,ps,pes",
-  .probe = probe_mpeg2,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AV_MPEG2,
+DOT_CLASS DLNA_CLASS_AV,
+DOT_EXTENSIONS "mpg,mpeg,mpe,m2v,mp2p,mp2t,ts,ps,pes",
+DOT_PROBE probe_mpeg2,
+DOT_NEXT NULL
 };

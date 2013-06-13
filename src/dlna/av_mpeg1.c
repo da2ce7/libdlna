@@ -28,9 +28,9 @@
 /* MPEG-1 video with 2 channel MPEG-1 Layer2 audio
    encapsulated in MPEG-1 system */
 static dlna_profile_t mpeg1 = {
-  .id = "MPEG1",
-  .mime = MIME_VIDEO_MPEG,
-  .label = LABEL_VIDEO_CIF30
+DOT_ID "MPEG1",
+DOT_MIME MIME_VIDEO_MPEG,
+DOT_LABEL LABEL_VIDEO_CIF30
 };
 
 static dlna_profile_t *
@@ -91,9 +91,9 @@ probe_mpeg1 (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_av_mpeg1 = {
-  .id = DLNA_PROFILE_AV_MPEG1,
-  .class = DLNA_CLASS_AV,
-  .extensions = "mpg,mpeg,mpe,m1v",
-  .probe = probe_mpeg1,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AV_MPEG1,
+DOT_CLASS DLNA_CLASS_AV,
+DOT_EXTENSIONS "mpg,mpeg,mpe,m1v",
+DOT_PROBE probe_mpeg1,
+DOT_NEXT NULL
 };

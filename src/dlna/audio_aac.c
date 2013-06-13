@@ -21,7 +21,11 @@
 
 #include <stdlib.h>
 #include <string.h>
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -30,187 +34,189 @@
 #include "profiles.h"
 #include "containers.h"
 
+typedef long ssize_t;
+
 /* Profile for audio media class content */
 static dlna_profile_t aac_adts = {
-  .id = "AAC_ADTS",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "AAC_ADTS",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t aac_adts_320 = {
-  .id = "AAC_ADTS_320",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "AAC_ADTS_320",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t aac_iso = {
-  .id = "AAC_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "AAC_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t aac_iso_320 = {
-  .id = "AAC_ISO_320",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "AAC_ISO_320",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content. In the case of AAC LTP profiles,
    both the ISO file formats and the ADTS format are supported by
    the same profile. */
 static dlna_profile_t aac_ltp_iso = {
-  .id = "AAC_LTP_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "AAC_LTP_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content with up to 5.1 channels */
 static dlna_profile_t aac_ltp_mult5_iso = {
-  .id = "AAC_LTP_MULT5_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "AAC_LTP_MULT5_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 /* Profile for audio media class content with up to 7.1 channels */
 static dlna_profile_t aac_ltp_mult7_iso = {
-  .id = "AAC_LTP_MULT7_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "AAC_LTP_MULT7_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 /* Profile for audio media class content with up to 5.1 channels */
 static dlna_profile_t aac_mult5_adts = {
-  .id = "AAC_MULT5_ADTS",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "AAC_MULT5_ADTS",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 /* Profile for audio media class content with up to 5.1 channels */
 static dlna_profile_t aac_mult5_iso = {
-  .id = "AAC_MULT5_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "AAC_MULT5_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t heaac_l2_adts = {
-  .id = "HEAAC_L2_ADTS",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAAC_L2_ADTS",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t heaac_l2_iso = {
-  .id = "HEAAC_L2_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAAC_L2_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t heaac_l3_adts = {
-  .id = "HEAAC_L3_ADTS",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAAC_L3_ADTS",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t heaac_l3_iso = {
-  .id = "HEAAC_L3_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAAC_L3_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content with up to 5.1 channels */
 static dlna_profile_t heaac_mult5_adts = {
-  .id = "HEAAC_MULT5_ADTS",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "HEAAC_MULT5_ADTS",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 /* Profile for audio media class content with up to 5.1 channels */
 static dlna_profile_t heaac_mult5_iso = {
-  .id = "HEAAC_MULT5_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "HEAAC_MULT5_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t heaac_l2_adts_320 = {
-  .id = "HEAAC_L2_ADTS_320",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAAC_L2_ADTS_320",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t heaac_l2_iso_320 = {
-  .id = "HEAAC_L2_ISO_320",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAAC_L2_ISO_320",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t bsac_iso = {
-  .id = "BSAC_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "BSAC_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 /* Profile for audio media class content with up to 5.1 channels */
 static dlna_profile_t bsac_mult5_iso = {
-  .id = "BSAC_MULT5_ISO",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_MULTI
+DOT_ID "BSAC_MULT5_ISO",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_MULTI
 };
 
 static dlna_profile_t heaac_v2_l2 = {
-  .id = "HEAACv2_L2",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_L2",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_l2_adts = {
-  .id = "HEAACv2_L2",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_L2",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_l2_320 = {
-  .id = "HEAACv2_L2_320",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_L2_320",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_l2_320_adts = {
-  .id = "HEAACv2_L2_320",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_L2_320",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_l3 = {
-  .id = "HEAACv2_L3",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_L3",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_l3_adts = {
-  .id = "HEAACv2_L3",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_L3",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_mult5 = {
-  .id = "HEAACv2_MULT5",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_MULT5",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t heaac_v2_mult5_adts = {
-  .id = "HEAACv2_MULT5",
-  .mime = MIME_AUDIO_ADTS,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "HEAACv2_MULT5",
+DOT_MIME MIME_AUDIO_ADTS,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 typedef enum {
@@ -488,10 +494,10 @@ aac_adts_object_type_get (AVFormatContext *ctx)
   if (!ctx)
     return t;
   
-  fd = open (ctx->filename, O_RDONLY);
-  count = read (fd, buf, sizeof (buf) - 1);
+  fd = _open (ctx->filename, O_RDONLY);
+  count = _read (fd, buf, sizeof (buf) - 1);
   t = (buf[2] & 0xC0) >> 6;
-  close (fd);
+  _close (fd);
   
 #ifdef HAVE_DEBUG
     fprintf (stderr, "AAC Object Type: %d\n", t);
@@ -511,8 +517,8 @@ aac_get_format (AVFormatContext *ctx)
   if (!ctx)
     return ct;
 
-  fd = open (ctx->filename, O_RDONLY);
-  count = read (fd, buf, sizeof (buf) - 1);
+  fd = _open (ctx->filename, O_RDONLY);
+  count = _read (fd, buf, sizeof (buf) - 1);
   if ((buf[0] == 0xFF) && ((buf[1] & 0xF6) == 0xF0))
   {
     ct = AAC_RAW;
@@ -520,7 +526,7 @@ aac_get_format (AVFormatContext *ctx)
     fprintf (stderr, "AAC has an ADTS header\n");
 #endif /* HAVE_DEBUG */
   }
-  close (fd);
+  _close (fd);
 
   return ct;
 }
@@ -561,9 +567,9 @@ probe_mpeg4 (AVFormatContext *ctx,
 }
 
 dlna_registered_profile_t dlna_profile_audio_mpeg4 = {
-  .id = DLNA_PROFILE_AUDIO_MPEG4,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "aac,adts,3gp,mp4,mov,qt,m4a",
-  .probe = probe_mpeg4,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_MPEG4,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "aac,adts,3gp,mp4,mov,qt,m4a",
+DOT_PROBE probe_mpeg4,
+DOT_NEXT NULL
 };

@@ -28,23 +28,23 @@
 
 /* Profile for audio media class content */
 static dlna_profile_t amr = {
-  .id = "AMR_3GPP",
-  .mime = MIME_AUDIO_MPEG_4,
-  .label = LABEL_AUDIO_MONO
+DOT_ID "AMR_3GPP",
+DOT_MIME MIME_AUDIO_MPEG_4,
+DOT_LABEL LABEL_AUDIO_MONO
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t three_gpp = {
-  .id = "AMR_3GPP",
-  .mime = MIME_AUDIO_3GP,
-  .label = LABEL_AUDIO_MONO
+DOT_ID "AMR_3GPP",
+DOT_MIME MIME_AUDIO_3GP,
+DOT_LABEL LABEL_AUDIO_MONO
 };
 
 /* Profile for audio media class content */
 static dlna_profile_t amr_wbplus = {
-  .id = "AMR_WBplus",
-  .mime = MIME_AUDIO_3GP,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "AMR_WBplus",
+DOT_MIME MIME_AUDIO_3GP,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static int
@@ -148,9 +148,9 @@ probe_amr (AVFormatContext *ctx dlna_unused,
 }
 
 dlna_registered_profile_t dlna_profile_audio_amr = {
-  .id = DLNA_PROFILE_AUDIO_AMR,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "amr,3gp,mp4",
-  .probe = probe_amr,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_AMR,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "amr,3gp,mp4",
+DOT_PROBE probe_amr,
+DOT_NEXT NULL
 };

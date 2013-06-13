@@ -27,15 +27,15 @@
 
 /* Profile for audio media class content */
 static dlna_profile_t lpcm = {
-  .id = "LPCM",
-  .mime = NULL,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "LPCM",
+DOT_MIME NULL,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 static dlna_profile_t lpcm_low = {
-  .id = "LPCM_low",
-  .mime = NULL,
-  .label = LABEL_AUDIO_2CH
+DOT_ID "LPCM_low",
+DOT_MIME NULL,
+DOT_LABEL LABEL_AUDIO_2CH
 };
 
 audio_profile_t
@@ -80,15 +80,15 @@ probe_lpcm (AVFormatContext *ctx dlna_unused,
     memcpy (&p, &lpcm, sizeof (lpcm));
   sprintf (mime, "%s;rate=%d;channels=%d",
            MIME_AUDIO_LPCM, codecs->ac->sample_rate, codecs->ac->channels);
-  p.mime = strdup (mime);
+  p.mime = _strdup (mime);
   
   return &p;
 }
 
 dlna_registered_profile_t dlna_profile_audio_lpcm = {
-  .id = DLNA_PROFILE_AUDIO_LPCM,
-  .class = DLNA_CLASS_AUDIO,
-  .extensions = "pcm,lpcm,wav,aiff",
-  .probe = probe_lpcm,
-  .next = NULL
+DOT_ID DLNA_PROFILE_AUDIO_LPCM,
+DOT_CLASS DLNA_CLASS_AUDIO,
+DOT_EXTENSIONS "pcm,lpcm,wav,aiff",
+DOT_PROBE probe_lpcm,
+DOT_NEXT NULL
 };

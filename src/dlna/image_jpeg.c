@@ -27,44 +27,44 @@
 
 /* Profile for image media class content of small resolution */
 static dlna_profile_t jpeg_sm = {
-  .id = "JPEG_SM",
-  .mime = MIME_IMAGE_JPEG,
-  .label = LABEL_IMAGE_PICTURE
+DOT_ID "JPEG_SM",
+DOT_MIME MIME_IMAGE_JPEG,
+DOT_LABEL LABEL_IMAGE_PICTURE
 };
 
 /* Profile for image media class content of medium resolution */
 static dlna_profile_t jpeg_med = {
-  .id = "JPEG_MED",
-  .mime = MIME_IMAGE_JPEG,
-  .label = LABEL_IMAGE_PICTURE
+DOT_ID "JPEG_MED",
+DOT_MIME MIME_IMAGE_JPEG,
+DOT_LABEL LABEL_IMAGE_PICTURE
 };
 
 /* Profile for image media class content of high resolution */
 static dlna_profile_t jpeg_lrg = {
-  .id = "JPEG_LRG",
-  .mime = MIME_IMAGE_JPEG,
-  .label = LABEL_IMAGE_PICTURE
+DOT_ID "JPEG_LRG",
+DOT_MIME MIME_IMAGE_JPEG,
+DOT_LABEL LABEL_IMAGE_PICTURE
 };
 
 /* Profile for image thumbnails */
 static dlna_profile_t jpeg_tn = {
-  .id = "JPEG_TN",
-  .mime = MIME_IMAGE_JPEG,
-  .label = LABEL_IMAGE_ICON
+DOT_ID "JPEG_TN",
+DOT_MIME MIME_IMAGE_JPEG,
+DOT_LABEL LABEL_IMAGE_ICON
 };
 
 /* Profile for small icons */
 static dlna_profile_t jpeg_sm_ico = {
-  .id = "JPEG_SM_ICO",
-  .mime = MIME_IMAGE_JPEG,
-  .label = LABEL_IMAGE_ICON
+DOT_ID "JPEG_SM_ICO",
+DOT_MIME MIME_IMAGE_JPEG,
+DOT_LABEL LABEL_IMAGE_ICON
 };
 
 /* Profile for large icons */
 static dlna_profile_t jpeg_lrg_ico = {
-  .id = "JPEG_LRG_ICO",
-  .mime = MIME_IMAGE_JPEG,
-  .label = LABEL_IMAGE_ICON
+DOT_ID "JPEG_LRG_ICO",
+DOT_MIME MIME_IMAGE_JPEG,
+DOT_LABEL LABEL_IMAGE_ICON
 };
 
 static const struct {
@@ -107,9 +107,9 @@ probe_jpeg (AVFormatContext *ctx,
 }
 
 dlna_registered_profile_t dlna_profile_image_jpeg = {
-  .id = DLNA_PROFILE_IMAGE_JPEG,
-  .class = DLNA_CLASS_IMAGE,
-  .extensions = "jpg,jpe,jpeg",
-  .probe = probe_jpeg,
-  .next = NULL
+DOT_ID DLNA_PROFILE_IMAGE_JPEG,
+DOT_CLASS DLNA_CLASS_IMAGE,
+DOT_EXTENSIONS "jpg,jpe,jpeg",
+DOT_PROBE probe_jpeg,
+DOT_NEXT NULL
 };

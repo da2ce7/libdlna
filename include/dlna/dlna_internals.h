@@ -30,6 +30,91 @@
 
 #include "dlna.h"
 
+#ifdef _WIN32
+#ifndef DOT_ID
+#define DOT_ID
+#endif
+#ifndef DOT_MIME
+#define DOT_MIME
+#endif
+#ifndef DOT_LABEL
+#define DOT_LABEL
+#endif
+#ifndef DOT_CLASS
+#define DOT_CLASS
+#endif
+#ifndef DOT_EXTENSIONS
+#define DOT_EXTENSIONS
+#endif
+#ifndef DOT_PROBE
+#define DOT_PROBE
+#endif
+#ifndef DOT_NEXT
+#define DOT_NEXT
+#endif
+#else
+#ifndef DOT_ID
+#define DOT_ID .id =
+#endif
+#ifndef DOT_MIME
+#define DOT_MIME .mime =
+#endif
+#ifndef DOT_LABEL
+#define DOT_LABEL .label =
+#endif
+#ifndef DOT_CLASS
+#define DOT_CLASS .class =
+#endif
+#ifndef DOT_EXTENSIONS
+#define DOT_EXTENSIONS .extensions =
+#endif
+#ifndef DOT_PROBE
+#define DOT_PROBE .probe =
+#endif
+#ifndef DOT_NEXT
+#define DOT_NEXT .next =
+#endif
+#endif
+
+//////////////////////////////////
+// C specific
+#ifdef _WIN32
+#ifndef S_ISREG
+#define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
+#endif
+
+#ifndef S_ISDIR
+#define S_ISDIR(m) (((m) & S_IFMT) == S_IFDIR)
+#endif
+
+#ifndef strcasecmp
+#define strcasecmp		_stricmp
+#endif
+#ifndef strncasecmp
+#define strncasecmp		strnicmp
+#endif
+
+#ifndef sleep
+#define sleep(a)		Sleep((a)*1000)
+#endif
+#ifndef usleep
+#define usleep(a)		Sleep((a)/1000)
+#endif
+#ifndef strerror_r
+#define strerror_r(a,b,c)	//(strerror_s((b),(c),(a)))
+#endif
+
+#else
+
+#ifndef max
+#define max(a, b)   (((a)>(b))? (a):(b))
+#endif
+#ifndef min
+#define min(a, b)   (((a)<(b))? (a):(b))
+#endif
+#endif /* WIN32 */
+
+
 /**
  * DLNA Library's controller.
  * This controls the whole library.

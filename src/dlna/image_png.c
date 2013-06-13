@@ -27,30 +27,30 @@
 
 /* Profile for image thumbnails */
 static dlna_profile_t png_tn = {
-  .id = "PNG_TN",
-  .mime = MIME_IMAGE_PNG,
-  .label = LABEL_IMAGE_ICON
+DOT_ID "PNG_TN",
+DOT_MIME MIME_IMAGE_PNG,
+DOT_LABEL LABEL_IMAGE_ICON
 };
 
 /* Profile for small icons */
 static dlna_profile_t png_sm_ico = {
-  .id = "PNG_SM_ICO",
-  .mime = MIME_IMAGE_PNG,
-  .label = LABEL_IMAGE_ICON
+DOT_ID "PNG_SM_ICO",
+DOT_MIME MIME_IMAGE_PNG,
+DOT_LABEL LABEL_IMAGE_ICON
 };
 
 /* Profile for large icons */
 static dlna_profile_t png_lrg_ico = {
-  .id = "PNG_LRG_ICO",
-  .mime = MIME_IMAGE_PNG,
-  .label = LABEL_IMAGE_ICON
+DOT_ID "PNG_LRG_ICO",
+DOT_MIME MIME_IMAGE_PNG,
+DOT_LABEL LABEL_IMAGE_ICON
 };
 
 /* Profile for image class content of high resolution */
 static dlna_profile_t png_lrg = {
-  .id = "PNG_LRG",
-  .mime = MIME_IMAGE_PNG,
-  .label = LABEL_IMAGE_PICTURE
+DOT_ID "PNG_LRG",
+DOT_MIME MIME_IMAGE_PNG,
+DOT_LABEL LABEL_IMAGE_PICTURE
 };
 
 static const struct {
@@ -88,9 +88,9 @@ probe_png (AVFormatContext *ctx,
 }
 
 dlna_registered_profile_t dlna_profile_image_png = {
-  .id = DLNA_PROFILE_IMAGE_PNG,
-  .class = DLNA_CLASS_IMAGE,
-  .extensions = "png",
-  .probe = probe_png,
-  .next = NULL
+DOT_ID DLNA_PROFILE_IMAGE_PNG,
+DOT_CLASS DLNA_CLASS_IMAGE,
+DOT_EXTENSIONS "png",
+DOT_PROBE probe_png,
+DOT_NEXT NULL
 };
